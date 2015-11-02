@@ -280,26 +280,22 @@ void LPD8806::show(void) {
   }
 }
 
-// Convert separate R,G,B into combined 32-bit GRB color:
-// EDIT: changed it from RGB to RBG
+// EDIT: Convert separate R,G,B into combined 32-bit BRG color:
 
-//uint32_t LPD8806::Color(byte r, byte g, byte b) {
-uint32_t LPD8806::Color(byte r, byte b, byte g) {
-  return ((uint32_t)(g | 0x80) << 16) |
+uint32_t LPD8806::Color(byte r, byte g, byte b) {
+  return ((uint32_t)(b | 0x80) << 16) |
          ((uint32_t)(r | 0x80) <<  8) |
-                     b | 0x80 ;
+                     g | 0x80 ;
 }
 
 // Set pixel color from separate 7-bit R, G, B components:
-// EDIT: changed it from RGB to RBG
 
-//void LPD8806::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
-void LPD8806::setPixelColor(uint16_t n, uint8_t r, uint8_t b, uint8_t g) {
+void LPD8806::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
   if(n < numLEDs) { // Arrays are 0-indexed, thus NOT '<='
     uint8_t *p = &pixels[n * 3];
-    *p++ = g | 0x80; // Strip color order is GRB,
+    *p++ = b | 0x80; // EDIT: Strip color order is BRG,
     *p++ = r | 0x80; // not the more common RGB,
-    *p++ = b | 0x80; // so the order here is intentional; don't "fix"
+    *p++ = g | 0x80; // so the order here is intentional; don't "fix"
   }
 }
 
