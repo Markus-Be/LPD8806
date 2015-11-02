@@ -1,3 +1,7 @@
+# ATTENTION #
+The Stripe that i got with LPD8806 has switched Blue and green.
+I fixed it one time in this Library and not in every line of code.
+
 # Arduino library for LPD8806 #
 This Library was written for the LPD8806 PWM LED driver chips, strips and pixels.
 But the LPD8803/LPD8809 will probably work too.
